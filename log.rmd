@@ -1,7 +1,8 @@
 ```{r}
 library(knitr)
+library(rjson)
+library(dplyr)
 ```
-
 
 
 ## Tue 12 Feb 2019 13:45:42 AEDT
@@ -943,7 +944,17 @@ library(knitr)
 
 ```
 
-```
 
+
+## Wed 13 Feb 2019 11:30:28 AEDT
+-  focus on reddit
+    - data sources: api, http://files.pushshift.io/reddit/ and bigquery
+    - develop metrics w.r.t
+        - karma point
+        - controversy
+        - comment length and shallowness; 
+        - shallowness
+        - sample dataset https://www.reddit.com/r/bigquery/comments/3cej2b/17_billion_reddit_comments_loaded_on_bigquery/ 
+        - 
 
 
