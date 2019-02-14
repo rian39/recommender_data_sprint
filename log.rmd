@@ -946,15 +946,8 @@ library(dplyr)
 
 
 
-## Wed 13 Feb 2019 11:30:28 AEDT
--  focus on reddit
-    - data sources: api, http://files.pushshift.io/reddit/ and bigquery
-    - develop metrics w.r.t
-        - karma point
-        - controversy
-        - comment length and shallowness; 
-        - shallowness
-        - sample dataset https://www.reddit.com/r/bigquery/comments/3cej2b/17_billion_reddit_comments_loaded_on_bigquery/ 
-        - 
+## Thu 14 Feb 2019 11:16:02 AEDT
+- Working with the reddit data
+- Useful sentiment analysis at https://github.com/aleszu/reddit-sentiment-analysis; also has the python script for getting stuff
 
 
