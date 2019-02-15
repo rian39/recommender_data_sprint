@@ -19,26 +19,6 @@ reddit = praw.Reddit(client_id=lines[0], \
 # get subreddits for the topic
 top = sys.argv[1]
 
-def save_submission(u = url):
-    submission = reddit.submission(url = u)
-
-    m_dict = {'post_date':[], \
-               'comm_date':[], \
-               'subreddit': [], \
-               'post_score':[],\
-               'author':[], \
-               'user':[], \
-               'comment_score':[], \
-               'controversiality':[], \
-               'comment':[], \
-               'post_text':[], \
-               'link':[], \
-               'domain':[], \
-               'URL':[]}
-
-    [c for c in submission.comments.list()]
-
-
 
 def save_top_subreddits(topic = top):
     subreddit = reddit.subreddit(topic)

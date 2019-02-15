@@ -1,0 +1,6 @@
+Cleaned up code/data I gave to Adrian and Tommaso
+
+test_collection.R - I'm running this every hour to collect the csv files via the API
+dynamic_net.R - intial work on constructing dynamic neworks from the csv files
+
+

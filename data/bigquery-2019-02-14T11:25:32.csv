@@ -1,0 +1,131 @@
+body,comms_num,created,id,score,title,url
+"It took a lot of work to get this done.  Submission objects are a lot more complex than comment objects and I needed to design the script in such a way that new fields would get automatically included in the database without breaking the script.  Essentially, all of the major fields for submission objects are available.  The media fields which are heavily nested are a JSON object under the column ""json_extended""  If new fields are added to the API, those fields will also automatically get included in the JSON object as values to the json_extended key/column. 
+
+All ids for subreddits, link_ids, comment ids and submission ids have been converted to base 10 integers.  You can still match up comments to submissions between the two tables using the link_id value in comments which will link to the id key in the submission table.  I have also preserved the base36 submission id under the ""name"" column in the submission table.
+
+This script will run constantly and feed both tables in near real-time -- with objects usually ending up there within 1-3 seconds of getting posted to Reddit (barring any issues with the Reddit API getting overwhelmed at times).
+
+Both tables are partitioned using the created_utc column, which is type ""timestamp.""  This will allow you to do searches for date ranges and only hit the partitioned tables necessary to complete the query (saving you data processing bytes -- remember, you get one terabyte free per month).
+
+I will be following up in this post with some SQL examples and eventually share some interesting queries that you can use by logging into the BigQuery web console.
+
+You can also use both of these tables within Python and other popular programming languages.  As soon as I get some time, I will also post some code samples on how to run queries against the data using Python.
+
+Please let me know if you have any questions related to the tables or the data.
+
+Happy big data hunting!",28,2018-05-23 21:55:41,8ljjmo,31,Reddit Submissions are now being streamed to BigQuery live along with comments,https://www.reddit.com/r/bigquery/comments/8ljjmo/reddit_submissions_are_now_being_streamed_to/
+,0,2019-02-08 01:18:56,ao617h,18,Query without a credit card: introducing BigQuery sandbox,https://cloud.google.com/blog/products/data-analytics/query-without-a-credit-card-introducing-bigquery-sandbox
+,0,2018-12-08 08:17:29,a45svg,14,"[stackoverflow] How to determine the city closest to a (lat,lon) with BigQuery SQL",https://stackoverflow.com/q/53678306/132438
+,0,2018-09-12 11:45:58,9f4cuf,16,BigQuery native query scheduling now in beta! (docs),https://cloud.google.com/bigquery/docs/scheduling-queries
+,1,2019-01-24 15:22:08,aja0wo,13,Google is named a leader in the 2019 Gartner Magic Quadrant for Data Management Solutions for Analytics,https://cloud.google.com/blog/products/data-analytics/google-named-a-leader-in-2019-gartner-magic-quadrant-for-data-management-solutions-for-analytics
+,0,2018-09-15 09:16:05,9fxlac,14,BigQuery ML now includes multiclass logistic regression models,https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-create#training_a_multiclass_logistic_regression_model_with_automatically_calculated_weights
+,0,2018-09-14 05:35:12,9fm3sh,12,Now in beta: Geography Functions in Standard SQL,https://cloud.google.com/bigquery/docs/reference/standard-sql/geography_functions
+,0,2018-07-21 03:57:10,90j7ux,13,Now available in beta: Using the new BigQuery Web UI,https://cloud.google.com/bigquery/docs/bigquery-web-ui
+,4,2018-04-20 23:30:21,8dogs2,14,I wrote a tool that automatically downloads Reddit data from BigQuery and trains a text-generating neural network on it.,https://github.com/minimaxir/subreddit-generator
+,0,2018-08-24 14:22:49,99v20b,11,Beta: Analyze BigQuery within Google Sheets,https://gsuite.google.com/campaigns/index__sheets-dataconnectors.html
+,0,2018-07-26 12:17:12,91z2ur,12,Machine Learning in Google BigQuery,https://ai.googleblog.com/2018/07/machine-learning-in-google-bigquery.html
+,2,2019-01-21 22:43:42,aiape1,10,I wrote a blog post on using Google Sheets as lookup tables with BigQuery for data normalization. Let me know what you think!,https://chrisgoddard.blog/2019/01/20/use-google-sheets-as-lookup-tables-for-data-normalization-in-google-bigquery/
+,1,2019-01-11 11:54:07,aerduc,11,New BigQuery UI features help you work faster,https://cloud.google.com/blog/products/bigquery/new-bigquery-ui-features-help-you-work-faster
+,0,2018-12-01 11:33:47,a1zjgk,12,Import JSON into BigQuery with Google Cloud Functions,https://medium.com/@lukwam/import-json-into-bigquery-with-google-cloud-functions-31facea134bf
+,0,2018-10-25 02:32:12,9r2c70,10,Leveraging Google BigQuery's machine learning capabilities for analysis in Tableau,https://www.tableau.com/about/blog/2018/7/leveraging-google-bigquerys-machine-learning-capabilities-analysis-tableau-91862
+,0,2018-08-31 01:16:28,9blk73,11,Expanding our Public Datasets for geospatial and ML-based analytics,https://cloud.google.com/blog/products/data-analytics/expanding-our-public-datasets-geospatial-and-ml-based-analytics
+,1,2018-05-08 10:58:23,8htggg,12,"How to write modular, readable SQL using named result sets and functions",https://medium.freecodecamp.org/how-to-write-modular-readable-sql-using-named-result-sets-and-functions-ac49f1ca25c1
+,0,2018-12-13 06:25:29,a5n32q,9,Release notes: Bigger BigQuery queries (The maximum standard SQL query length is now 1 MB instead of the previous 256 kB),https://cloud.google.com/bigquery/docs/release-notes#bigquery
+,0,2018-11-02 10:19:59,9tg2pk,9,Python PyPI stats in BigQuery: Reclustered (bonus: top growing Python projects in 2018),https://medium.com/@hoffa/python-pypi-stats-in-bigquery-reclustered-d80e583e1bfe
+,0,2018-10-20 12:43:46,9pr99v,11,[video] How to Do Predictive Analytics in BigQuery (Next Rewind '18),https://www.youtube.com/watch?v=0Y97savVd24
+,1,2018-08-17 13:45:04,97zqme,9,"What’s happening in BigQuery: integrated machine learning, maps, and more",https://cloud.google.com/blog/products/data-analytics/whats-happening-bigquery-integrated-machine-learning-maps-and-more
+,0,2018-07-26 00:54:48,91tl7h,10,How to train and predict regression and classification ML models using only SQL — using BigQuery ML,https://medium.com/@lakshmanok/how-to-train-and-predict-regression-and-classification-ml-models-using-only-sql-using-bigquery-ml-f219b180b947
+,4,2018-05-02 05:11:47,8gbyjq,10,Google Cloud Composer is now in beta: build and run practical workflows with minimal effort [managed Apache Airflow!],https://cloud.google.com/blog/big-data/2018/05/cloud-composer-is-now-in-beta-build-and-run-practical-workflows-with-minimal-effort
+,0,2018-04-10 23:35:15,8b8htk,10,calling c functions from bigquery with web assembly,https://blog.sourced.tech/post/calling-c-functions-from-bigquery/
+,0,2019-01-12 04:03:06,aez9c8,8,Predicting Whiskey Preferences in GCP: Whisked Away by BigQuery ML,https://towardsdatascience.com/whisked-away-by-bigquery-ml-e98bacad2120
+,0,2018-10-30 16:19:27,9slxbb,8,[github] google/vscode-bigquery: A Visual Studio Code plugin for running BigQuery queries,https://github.com/google/vscode-bigquery
+,1,2018-10-20 12:32:52,9pr73j,8,BigQuery without a credit card: Using the BigQuery sandbox,https://cloud.google.com/bigquery/docs/sandbox
+,0,2018-10-16 16:30:03,9oloe7,8,Set up your BigQuery cost controls. Follow these steps now to query worry-free,https://stackoverflow.com/a/52831057/132438
+,5,2018-08-07 01:17:57,9536nj,9,Optimizing BigQuery: Cluster your tables,https://medium.com/@hoffa/bigquery-optimized-cluster-your-tables-65e2f684594b
+,1,2018-07-07 08:21:12,8wp363,9,"[github] mhlabs/datahem: A serverless real-time end-2-end Analytics ML pipeline built entirely on GCP services - AppEngine, PubSub, Dataflow, BigQuery and Cloud ML",https://github.com/mhlabs/datahem/
+,1,2018-06-01 07:56:06,8nnbmc,9,"New in BigQuery: NUMERIC data type, cost controls, MERGE, DML quotas, load quotas",https://medium.com/@thetinot/whats-new-in-bigquery-78e08c5ed3cd
+,0,2019-02-05 18:36:03,ancvxg,8,"Navigating Bitcoin, Ethereum, XRP: How Google Is Quietly Making Blockchains Searchable",https://www.forbes.com/sites/michaeldelcastillo/2019/02/04/navigating-bitcoin-ethereum-xrp-how-google-is-quietly-making-blockchains-searchable/?ss=crypto-blockchain#20199f6a4248
+,0,2019-01-05 12:55:35,acqxan,9,"Choosing between TensorFlow/Keras, BigQuery ML, and AutoML Natural Language for text classification",https://towardsdatascience.com/choosing-between-tensorflow-keras-bigquery-ml-and-automl-natural-language-for-text-classification-6b1c9fc21013
+,0,2018-12-11 11:47:29,a537oa,9,How to tune a BigQuery ML classification model to achieve a desired precision or recall,https://towardsdatascience.com/how-to-tune-a-bigquery-ml-classification-model-to-achieve-a-desired-precision-or-recall-e4d40b93016a
+,1,2018-11-27 12:18:44,a0rapl,8,Pandora chooses Google Cloud for big data and analytics,https://engineering.pandora.com/investing-in-pandoras-core-differentiators-1fbec589e1d
+,0,2018-08-14 04:43:34,971zkh,8,How to do online prediction with BigQuery ML,https://towardsdatascience.com/how-to-do-online-prediction-with-bigquery-ml-db2248c0ae5
+,0,2018-06-13 22:58:37,8qt2ht,8,[video] BigQuery and Open Datasets,https://www.youtube.com/watch?v=_cj2pA3p51I
+,0,2018-05-01 05:07:28,8g2xc1,9,The Evolution of The New York Times Tech Stack,https://stackshare.io/posts/evolution-of-new-york-times-tech-stack
+,0,2018-04-07 10:32:49,8af61k,7,Oracle data to Google BigQuery using Google Cloud Dataflow and Dataprep,https://medium.com/@paulo_amaral/oracle-data-to-google-bigquery-using-google-cloud-dataflow-and-dataprep-20884571a9e5
+,1,2018-04-04 04:03:21,89hxa6,7,Introducing the Google Analytics Sample Dataset for BigQuery (12 months of real hit and session level data),https://analytics.googleblog.com/2018/03/introducing-google-analytics-sample.html
+,0,2019-01-16 16:07:52,agj0ny,7,Calculating Gini Coefficient in BigQuery,https://medium.com/google-cloud/calculating-gini-coefficient-in-bigquery-3bc162c82168
+,2,2019-01-03 05:47:06,aby5a0,7,Audit Multiple Sites With Lighthouse And Write Results To BigQuery,https://www.simoahava.com/google-cloud/lighthouse-bigquery-google-cloud-platform/
+,0,2018-12-23 04:21:48,a8o3ii,6,BigQuery public datasets metadata,https://medium.com/@zdenulo/bigquery-public-datasets-metadata-788c2c3897b2
+,0,2018-11-22 03:44:19,9z6kr9,7,"The full XRP ledger, visualised​",https://xrpcommunity.blog/the-full-xrp-ledger-visualized/
+,1,2018-11-14 05:58:26,9wtlr5,7,When will Stack Overflow reply: How to predict with BigQuery,https://medium.com/@hoffa/when-will-stack-overflow-reply-how-to-predict-with-bigquery-553c24b546a3
+,1,2018-10-31 10:53:05,9suxef,7,"Where /r/devops asks ""How to deal with 3000TB of log files daily?"", I suggest BigQuery",https://www.reddit.com/r/devops/comments/9ss2ys/how_to_deal_with_3000tb_of_log_files_daily/e8rhef8/
+,0,2018-10-31 02:22:05,9sqkxo,7,Modern data warehousing with BigQuery: a Q&A with Engineering Director Jordan Tigani,https://cloud.google.com/blog/products/data-analytics/modern-data-warehousing-with-bigquery-a-qa-with-engineering-director-jordan-tigani
+,1,2018-10-10 08:20:16,9muma9,6,"GCS Auto-Loader: Point it to a GCS path, set a recurring schedule for automatic loads and appends (BigQuery Data Transfer for Google Cloud Storage, beta)",https://cloud.google.com/bigquery/docs/cloud-storage-transfer
+,0,2018-10-05 16:32:09,9lkh7e,6,Google Patents Public Data kernels in Kaggle,https://www.kaggle.com/bigquery/patents/kernels
+,1,2018-09-20 16:07:19,9hdfu9,7,Query BigQuery With Python Using Ibis,https://cloud.google.com/community/tutorials/bigquery-ibis
+,0,2018-08-23 16:53:15,99lqc3,6,"BigQuery SQL: Average, geometric mean, remove outliers, median",https://stackoverflow.com/q/51981353/132438
+,3,2018-08-21 16:16:33,991d68,8,Predicting Taxi Fare Price With BigQuery ML,https://medium.com/@ostap/predicting-taxi-fare-price-with-bigquery-ml-368601e2903b
+,0,2018-08-18 12:09:14,988wyt,6,[dataset] Introducing a new transparency report for political ads,https://www.blog.google/technology/ads/introducing-new-transparency-report-political-ads/
+,0,2018-08-01 10:54:12,93l50v,8,Configure BigQuery ODBC Driver On Linux,https://medium.com/searce/configure-bigquery-odbc-driver-on-linux-ef66f105ffc1
+,0,2018-07-26 03:02:17,91uqwu,7,"AnnouncementS: BigQuery ML (beta), BigQuery Clustering (beta), GIS (public alpha), sheets data connector, more",https://cloud.google.com/blog/big-data/2018/07/bridging-the-gap-between-data-and-insights
+,1,2018-07-14 08:46:23,8ypd0i,8,Using GCP Genomics and BigQuery to Annotate Clinically Significant SNP Data,https://www.sourcedgroup.com/blog/gcp-genomics-big-query
+,0,2018-07-03 03:36:00,8vljvu,7,Resolving Big Data Challenges: Why We Use BigQuery at Outfit7,https://outfit7.com/jobs/job-blog/global-reach/story/resolving-big-data-challenges-why-we-use-bigquery-at-outfit7/
+,1,2018-05-16 20:40:20,8jul75,6,New type in BigQuery: NUMERIC (beta),https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#numeric-type
+,0,2018-04-28 08:35:04,8fgclu,7,"Data Analysis Using SQL, Python and BigQuery",http://www.ecapitaladvisors.com/blog/data-analysis-using-sql-python-bigquery/
+,0,2019-02-06 13:50:15,annoqs,5,Introducing six new cryptocurrencies in BigQuery Public Datasets—and how to analyze them,https://cloud.google.com/blog/products/data-analytics/introducing-six-new-cryptocurrencies-in-bigquery-public-datasets-and-how-to-analyze-them
+,0,2018-11-13 09:37:11,9wkibk,6,"Event-Level Digital Analytics using Google Analytics, Fivetran, BigQuery and Looker",https://www.mjr-analytics.com/blog/2018/11/12/event-level-digital-analytics-using-google-analytics-fivetran-bigquery-andnbsplooker
+,0,2018-11-09 10:39:59,9vgmy9,6,"[video] How Geotab Drives Smart City Innovation, Using BigQuery (Next Rewind '18)",https://www.youtube.com/watch?v=QQPsuE9Tvps
+,0,2018-10-23 05:48:06,9qie33,6,How to transfer BigQuery tables between locations with Cloud Dataflow,https://medium.com/weareservian/how-to-transfer-bigquery-tables-between-locations-with-cloud-dataflow-9582acc6ae1d
+,0,2018-10-13 04:32:36,9nntv2,5,"What’s happening in BigQuery: a new ingest format, data type updates, ML, and query scheduling",https://cloud.google.com/blog/products/data-analytics/whats-happening-bigquery-new-ingest-format-data-type-updates-ml-and-query-scheduling
+,0,2018-10-09 05:18:17,9miy2c,6,How Traveloka built a Data Provisioning API on a BigQuery-based microservice architecture,https://cloud.google.com/blog/products/data-analytics/how-traveloka-built-a-data-provisioning-api-on-a-bigquery-based-microservice-architecture
+,0,2018-08-25 15:12:35,9a50wu,5,Dataset: Zip Code Tabulation Area (ZCTA) (polygons that roughly approximate each of the USPS 5-digit zip codes),https://console.cloud.google.com/marketplace/details/bigquery-public-data/zipcode_area
+,0,2018-08-17 04:57:49,97w3vd,6,"[video] Connecting Africa: Nomanini, GCP, and BigQuery",https://www.youtube.com/watch?v=GONlbGeUmFo
+,0,2018-07-04 05:19:22,8vvxpm,5,OWOX BI BigQuery Reports - Google Sheets add-on (>10k users reported),https://chrome.google.com/webstore/detail/owox-bi-bigquery-reports/fepofngogkjnejgcbdmmkddnpeojbbin
+,2,2018-06-13 02:30:00,8qlcwj,6,[video] Cloud OnAir: What's new in BigQuery,https://www.youtube.com/watch?v=0TzAU0xFvYU&t=2649
+https://blog.doit-intl.com/say-goodbye-to-mixpanel-meet-banias-12e09fecc44a,1,2018-05-30 23:16:09,8n9dtp,6,"Say goodbye to Mixpanel. Meet Banias! Meet Banias — high-performance analytics pipeline built on top of Kubernetes, Apache Beam and Google BigQuery",https://www.reddit.com/r/bigquery/comments/8n9dtp/say_goodbye_to_mixpanel_meet_banias_meet_banias/
+,0,2018-05-03 06:54:01,8glo06,7,Why Google Analytics Users Don’t Match BigQuery Users,https://www.analyticspros.com/blog/google-analytics/why-google-analytics-users-dont-match-bigquery-users/#240624
+,0,2018-04-05 11:34:32,89wgg1,6,"Give meaning to 100 billion analytics events a day – Teads Engineering – ""How we orchestrate Kafka, Dataflow and BigQuery""",https://medium.com/teads-engineering/give-meaning-to-100-billion-analytics-events-a-day-d6ba09aa8f44
+,0,2018-03-14 07:01:57,848kya,6,Deep Neural Network implemented in pure SQL over BigQuery,https://towardsdatascience.com/deep-neural-network-implemented-in-pure-sql-over-bigquery-f3ed245814d3
+,0,2018-02-27 09:49:37,80ikza,7,Learn SQL with BigQuery and Kaggle,https://www.kaggle.com/learn/sql
+,1,2019-02-11 01:28:16,ap62hb,6,Loading Terabytes of Data From Postgres Into BigQuery,https://dzone.com/articles/loading-terabytes-of-data-from-postgres-into-bigqu
+,0,2019-01-24 10:26:36,aj7o74,4,Cost optimizing BigQuery - part 1: collecting data,https://www.linkedin.com/pulse/cost-optimizing-bigquery-part-1-collecting-data-rogier-werschkull/
+,1,2019-01-18 06:09:12,ah379h,5,[case study] Monzo: Creating analytics that count with Google BigQuery,https://cloud.google.com/customers/monzo/
+,0,2018-12-07 03:50:33,a3rjar,4,[stackoverflow] Deleting duplicates in a partitioned table - with a single MERGE,https://stackoverflow.com/a/53656698/132438
+"I have some data in a CSV file in Google Cloud Storage. I am trying to run a Select Query on it. When I use Big Query, it asks me to create a table and loads the data (I think) into it. Then I can run queries on the data. If I add rows to the csv files in cloud storage and run a select \* in Big Query, it does not show me the new data. This makes me believe that Big Query takes a snapshot and caches data. Is this true? If yes, how can I have a table in Big Query that updates automatically if the underlying storage object is updated?",7,2018-11-16 04:14:21,9xeta0,5,Does Big Query cache data into tables when loaded from Cloud Storage Object?,https://www.reddit.com/r/bigquery/comments/9xeta0/does_big_query_cache_data_into_tables_when_loaded/
+,0,2018-11-10 03:46:44,9vnm7f,5,Turning GA360 BigQuery exports into partitioned tables using Cloud Functions,https://code.markedmondson.me/bigquery-ga360-exports-cloud-functions/
+,1,2018-10-28 13:53:24,9s12ut,4,Applied Machine Learning with BigQuery ML Meetup in SF Bay Area,https://www.meetup.com/muilticloud-sf/events/255712998/
+,0,2018-10-11 12:57:12,9n6yrw,7,Syncing millions of records a day to BigQuery: our experience moving from GAE to GKE,https://tech.namshi.io/blog/2018/09/25/syncing-millions-of-records-a-day-to-bigquery-our-experience-moving-from-gae-to-gke/
+,0,2018-10-11 09:55:31,9n5qrr,6,Share Data with Confidence: Cell-level Access Controls in BigQuery and Data Studio,https://medium.com/google-cloud/share-data-with-confidence-cell-level-access-controls-in-bigquery-and-data-studio-cf753fa173a4
+,1,2018-10-04 12:56:08,9l8vrc,6,BigQuery running Python UDFs thanks to Ibis,https://docs.ibis-project.org/udf.html
+,0,2018-10-02 04:59:15,9kkao9,5,BigQuery and surrogate keys: a practical approach. New function: GENERATE_UUID(),https://cloud.google.com/blog/products/data-analytics/bigquery-and-surrogate-keys-practical-approach
+,0,2018-09-12 12:00:31,9f4g97,5,Moving to BigQuery — Data at our Fingertips – Hike Blog,https://blog.hike.in/moving-to-bigquery-data-at-our-fingertips-2273a71252ce
+,0,2018-08-30 01:16:54,9bb91t,6,Ethereum in BigQuery: a Public Dataset for smart contract analytics,https://cloud.google.com/blog/products/data-analytics/ethereum-bigquery-public-dataset-smart-contract-analytics
+"We are exploring tableau and are looking to connect to BQ.  Have people done this successfully as can share their feedback of their experiences 
+
+. ",7,2018-08-03 14:18:43,9476bq,6,Using tableau and big query ?,https://www.reddit.com/r/bigquery/comments/9476bq/using_tableau_and_big_query/
+,1,2018-07-31 12:59:51,93bjfy,4,My tips for using BigQuery in the enterprise,https://medium.com/weareservian/tips-for-running-bigquery-in-the-enterprise-ec3d8ea8db82
+,0,2018-07-31 11:55:54,93b4tj,6,[video] How to Do Predictive Analytics in BigQuery,https://www.youtube.com/watch?v=Ml2aCTn7kFY
+,0,2018-07-28 04:27:17,92g1o2,4,[video] Access and Analyze Large-scale Public Datasets on Google Cloud,https://www.youtube.com/watch?v=vTJWb4twnM8
+,0,2018-07-26 11:50:40,91ywo0,4,How to load geographic data like zipcode boundaries into BigQuery,https://medium.com/@lakshmanok/how-to-load-geographic-data-like-zipcode-boundaries-into-bigquery-25e4be4391c8
+,0,2018-06-30 10:54:12,8uywq4,5,"BigQuery in June: a new data type, new data import formats, and finer cost controls",https://cloud.google.com/blog/big-data/2018/06/bigquery-in-june-a-new-data-type-new-data-import-formats-and-finer-cost-controls
+,0,2018-06-29 18:20:57,8us1uu,5,Google Search Console Data into Google BigQuery,https://medium.com/@singularbean/google-search-console-data-into-google-bigquery-3e794127fa08
+"I may be reading the documentation incorrectly, but I am trying to test partitions on a table for real-time Reddit comments.  This is the SQL I am using (Standard SQL since that is what is supported by partitioned tables)
+
+    SELECT subreddit FROM `pushshift.rt_reddit.comments` WHERE _PARTITIONDATE >= ""2018-01-29""
+
+I am getting the error:
+
+""Error: Unrecognized name: _PARTITIONDATE at [1:60]""
+
+Should I be using the actual field name I used as the partition (created_utc)?  Will it know to only scan the partitions needed to fulfill a where request even if the times overlap days?
+
+   (i.e. _PARTITIONTIME >= ""2018-01-29 09:30:00"" AND _PARTITIONTIME < ""2018-01-30 02:15:00""
+
+    SELECT subreddit from `pushshift.rt_reddit.comments` WHERE created_utc > TIMESTAMP(DATETIME_SUB(CURRENT_DATETIME(), INTERVAL 3 DAY))
+
+This will show the last 3 days, so I'm assuming it would know to use just 4 partitions if the partitions are by day?",2,2018-05-18 07:33:15,8k8rud,5,Using _PARTITIONDATE pseudo column,https://www.reddit.com/r/bigquery/comments/8k8rud/using_partitiondate_pseudo_column/
+,0,2018-05-17 06:00:25,8jyxax,5,[video] Exploring NCAA Data with BigQuery,https://www.youtube.com/watch?v=fz-uWP8mpHs
+"Major beginner to SQL and BigQuery. Currently, I am just trying to get data points for all of the historical data on /u/Stuck_In_the_Matrix's data set. Specifically trying to count the number of appearances of a specific phrase on one subreddit, and how this number varies over time. Any help would be super appreciated!",3,2018-05-15 10:18:27,8ji0kb,4,[Beginner] How to use BigQuery to identify the number of times a phrase appears on a specific subreddit over time,https://www.reddit.com/r/bigquery/comments/8ji0kb/beginner_how_to_use_bigquery_to_identify_the/
+,6,2018-04-26 08:08:04,8eye6e,5,[video] Analyzing Millions of Early Reddit Submissions - Data Science Unscripted #1 (Part 1/2 - by /u/minimaxir),https://www.youtube.com/watch?v=_YXMHTkxUG8
+,0,2018-04-26 07:58:02,8eybxh,5,Google's BigQuery Gaining Steam As Cloud Warehouse Wars Heat Up,https://www.datanami.com/2018/04/24/googles-bigquery-gaining-steam-as-cloud-warehouse-wars-heat-up/
+I was recently looking through the Reddit comment data and realized it hasn't been updated since December 2017. Any chance data from 2018 will be added to the set? I'd love to use it for a project I'm working on.,2,2018-04-13 06:19:42,8bu849,6,Reddit Data post-2017?,https://www.reddit.com/r/bigquery/comments/8bu849/reddit_data_post2017/
