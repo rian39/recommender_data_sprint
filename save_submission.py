@@ -37,21 +37,21 @@ def save_submission(u = url):
                'domain':[], \
                'URL':[]}
 
-    for co in  submission.comments.list()
+    for co in  submission.comments.list():
         m_dict["post_date"].append(submission.title)
         m_dict["comm_date"].append(co.created)
         m_dict["subreddit"].append(submission.subreddit_id)
-        m_dict["title"].append(submission.title)
-        m_dict["author"].append(co.author_fullname)
+        # m_dict["post_score"].append(submission.score)
+        # m_dict["author"].append(co.author.name)
         m_dict["comment_score"].append(co.score)
         m_dict["comment_hidden"].append(co.score_hidden)
         m_dict["controversiality"].append(co.controversiality)
         m_dict["comment"].append(co.body)
         m_dict["post_score"].append(submission.score)
-        m_dict["title"].append(submission.title)
-        m_dict["title"].append(submission.title)
-        m_dict["title"].append(submission.title)
-        m_dict["title"].append(submission.title)
+        m_dict["link"].append(submission.title)
+        m_dict["post_text"].append(submission.title)
+        m_dict["domain"].append(submission.title)
+        m_dict["URL"].append(submission.title)
 
     submission_data = pd.DataFrame(m_dict)
 
@@ -61,3 +61,5 @@ def save_submission(u = url):
     subreddit = submission.reddit.display_name
     topics_data.to_csv('data/' + subreddit + '/' + id+'-' + time_now + '.csv', index = False)
     return
+
+save_submission(url)

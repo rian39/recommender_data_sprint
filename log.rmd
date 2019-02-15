@@ -69,3 +69,6 @@ library(dplyr)
 
     20. television — 14,730,352
 
+- found this paper on reddit https://www.reddit.com/r/science/comments/aqavuw/machine_learning_analysis_of_deleted_content_on/
+- saved in ~/archive/ensembles/reddit_deletions_2019.pdf
+
