@@ -72,3 +72,21 @@ library(dplyr)
 - found this paper on reddit https://www.reddit.com/r/science/comments/aqavuw/machine_learning_analysis_of_deleted_content_on/
 - saved in ~/archive/ensembles/reddit_deletions_2019.pdf
 
+
+## Mon 18 Feb 2019 14:26:19 AEDT
+-  3 problems for the data sprint:
+    1. karma reverse engineering
+    2. dynamics of attention -- platforms vs internal; 
+    3. moderation effects 
+
+
+## Wed 20 Feb 2019 09:42:05 AEDT
+
+```{r masterclass}
+library(igraph)
+library(vosonSML)
+library(quanteda)
+help.start()
+
+```
+
