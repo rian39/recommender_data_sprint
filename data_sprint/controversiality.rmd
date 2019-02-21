@@ -1,0 +1,198 @@
+---
+title:'Controversiality Data Sprint'
+
+---
+
+# Reading robs zip file from GoogleDrive
+
+```{r data-wrangling,warning = FALSE, message = FALSE, cache = TRUE}
+
+library(readr)
+library(tidyverse)
+library(dplyr)
+library(ggplot2)
+library(digest)
+
+# to read multiple tables - this was my first attempt -- probably redundant now
+# it doesn't really work
+readrawdata  <-  function(path) {
+    futbl <-
+        list.files(path, pattern='*comments.csv', recursive = TRUE) %>%
+        map_df(~read_csv(.))
+    return(futbl)
+}
+
+# Galens import function
+# list all files in dirs (and subdirs) ending in comments.csv
+raw_comment_files <- list.files(path = "./data",
+                                pattern = "*comments.csv",
+                                recursive = TRUE)
+
+# prepend ./data/ to the file paths (because I'm storing the data in ./data/)
+for (i in 1:length(raw_comment_files)) {
+  raw_comment_files[i] <- paste0("./data/",raw_comment_files[i])
+}
+
+# function to read csv and join a filename column
+# also made a new id variable id_cross  
+read_csv_with_filename <- function(csv_path) {
+  df <- read_csv(csv_path) %>%
+    mutate(filename = csv_path, id_cross = paste0(id2, filename))
+  return(df)
+}
+
+# import all csvs to a single df
+raw_join_df <- do.call(rbind, lapply(raw_comment_files, read_csv_with_filename))
+
+# generate a hash to uniquely identify each comment over time (assuming no edits to the comment content)
+
+raw_join_df$comment_hash <- character(length = nrow(raw_join_df))
+for (i in 1:nrow(raw_join_df)) {
+  raw_join_df$comment_hash[i] <- sha1(paste(raw_join_df$filename[i], 
+                                             raw_join_df$user[i],
+                                             raw_join_df$id2[i],
+                                             raw_join_df$id_par2[i],
+                                             raw_join_df$comment[i],
+                                             raw_join_df$entry[i],
+                                             sep = '_'))
+}
+
+dim(raw_join_df)
+raw_join_df$id_cross  <- raw_join_df$comment_hash
+# old test cut -- NOT RUN
+
+df = read_csv('data/Futurology/data_aq5sih.post.dynamic.csv')
+df2 = read_csv('data/Futurology/data_aq5sih.comments.csv')
+
+df2  <- raw_join_df
+colnames(df2)
+post_count <- df2 %>% filter(id2 == 1) %>% distinct() %>% summarize(post_count = n())
+comment_count <- df2 %>% filter(id2 > 1) %>% distinct() %>% summarize(comment_count = n())
+
+```
+
+# Basic stats
+
+There are `r length(unique(df2$id_cross))` comments and posts in the data. 
+This includes `r post_count` posts and `r comment_count` comments.   
+Why are these numbers different?
+
+# Controversiality data from the Reddit API
+
+```{r explore-controversiality_variable}
+
+# to sort comments by controversiality
+
+
+# get controversial comments
+controversial_ids  <- df2 %>% select(id_cross, controversiality) %>% 
+    filter(controversiality == 1)
+
+
+# get non-controversial comments
+noncontrov_ids  <-  df2 %>% select(id_cross, controversiality) %>% 
+    filter(!(id_cross %in% controversial_ids$id_cross), controversiality == 0)
+
+#proportion of controversial comments
+
+controversial_prop <- length(unique(controversial_ids$id_cross))/length(unique(df2$id_cross))   
+
+```
+
+The proportion of posts or comments marked as controversial sometime in their lifetime is `r controversial_prop*100`%.
+This seems really high. We might need to check the data on this. 
+
+Over what time period do posts become controversial?
+
+```{r explore-controversiality2}
+
+# select all the comments marked as controversial
+controvs  <- df2 %>% filter(id_cross %in% controversial_ids$id_cross) %>%
+    group_by(id_cross) %>% arrange(id_cross, time)
+
+controv_summary  <- controvs %>% group_by(id_cross) %>%
+    summarize(score_range = max(comment_score)-min(comment_score),
+             time_range = max(time) - min(time) ) %>%
+             arrange(desc(score_range), time_range)
+
+controv_summary %>% summarize(m = max(score_range))
+controv_summary %>% ggplot(aes(score_range)) + geom_histogram(bins=100) +
+    xlab('Change in score over time of harvest') +
+    ggtitle('Range of scores for comments with controversiality')
+
+controv_summary %>% ggplot(aes(y=score_range, x=time_range)) + geom_jitter() +
+    labs(x = 'Time range (hours)', y = 'Score range (votes?)') +
+    ggtitle('Range of scores vs time range for comments with controversiality')
+
+# select all non-controversial posts
+
+noncontrovs  <- df2 %>% filter(id_cross %in% noncontrov_ids$id_cross) %>%
+    group_by(id_cross) %>% arrange(id_cross, time)
+
+noncontrov_summary  <- noncontrovs %>% group_by(id_cross) %>%
+    summarize(score_range = max(comment_score)-min(comment_score),
+             time_range = max(time) - min(time) ) %>%
+             arrange(desc(score_range), time_range)
+
+noncontrov_summary %>% summarize(m = max(score_range))
+noncontrov_summary %>% ggplot(aes(score_range)) + geom_histogram(bins=100) +
+    xlab('Change in score over time of harvest') +
+    ggtitle('Range of scores for comments with no controversiality')
+
+noncontrov_summary %>% ggplot(aes(y=score_range, x=time_range)) + geom_jitter() +
+    labs(x = 'Time range (hours)', y = 'Score range (votes?)') +
+    ggtitle('Range of scores vs time range for comments with no controversiality')
+
+
+```
+
+It's hard to see much in the first plot, but it does seem that most controversial posts don't have very dynamic comment scores.   
+
+```{r compare-controv-noncontrov}
+
+# combining the data for controversial and non-controversial 
+noncontrov_summary['becomes_controv']  <-  FALSE
+controv_summary['becomes_controv']  <-  TRUE
+
+connoncon_summary  <-  rbind(noncontrov_summary, controv_summary)
+
+connoncon_summary %>% ggplot(aes(y=score_range, x=time_range,
+    colour = becomes_controv, group = becomes_controv)) +
+    geom_jitter() +
+    labs(x = 'Time range (hours)', y = 'Score range (votes?)') +
+    ggtitle('Range of scores vs time range for comments')
+
+comparedf  <- df2 %>% group_by(id_cross) %>%
+    mutate(becomes_controversial = ifelse(controversiality == 1, TRUE, FALSE)) %>%
+    group_by(becomes_controversial) %>% summarize(score_range = max(comment_score)-min(comment_score),
+             time_range = max(time) - min(time) )
+
+```
+
+The plot above could mean that `controversiality` does not do much. Or it could mean that the low comment-score range of comments marked controversiality is a result of downvotes substracted from upvotes. 
+
+
+```{r controversiality-entry}
+
+df2 %>% select(id_cross, entry, filename) %>%
+    ggplot(aes(x=entry, group = filename, fill = filename)) + geom_density() +
+    labs(x = 'entry time (hours into the gather)') + 
+    ggtitle('Entry times for comments grouped by threads')
+
+write.csv(df2, 'rawdate_frame.csv')
+df  <- read_csv('rawdate_frame.csv')
+dim(df)
+```
+
+Most of the comments come near the beginning of the collection of threads.
+    filter(id_cross %in% controversial_ids%id_cross)
+
+controversial_ids
+
+```
+
+## Problems and tasks with the data
+- How to correct for the arbitrary startpoint of the data capture 
+- How soon after its entry does a comment become controversial?
+- Does a controversial comment ever become non-controversial?
+

@@ -85,8 +85,104 @@ library(dplyr)
 ```{r masterclass}
 library(igraph)
 library(vosonSML)
+# check opensource software journal
 library(quanteda)
+library(readtext)
 help.start()
 
+cor  <- corpus('A corpus is a set of documents', 'A set of documents is text')
+summary(cor)
+
+tokens('Of all tax, income taxes are worst', remove_punct = TRUE)
+tokens_wordstem(toks) %>% tokens_remove(stopwords('english')) %>% tolower()
+tokens_wordstem(toks) %>% tokens_remove(stopwords('english')) %>% types()
+tokens_wordstem(toks) %>% tokens_remove(stopwords('english')) %>% dfm()
+df  <- tokens_wordstem(toks) %>% tokens_remove(stopwords('english')) %>% dfm()
+
+# combine the tokenizing, etc, in the dfm
+dfm(cor, remove_punct = TRUE, stem =  TRUE, tolower = TRUE, remove = stopwords('english'))
+
+#corpus functions
+
+corpus_subset()
+corpus_reshape()
+corpus_segment()
+corpus_sample()
+
+inc  <- quanteda::data_corpus_inaugural
+summary(inc)
+
+inc %>% corpus_subset(President == 'Obama') %>%
+    corpus_reshape(to = 'sentences') %>% ndoc()
+
+inc %>% corpus_subset(Year >= 2000) %>%
+    corpus_reshape(to = 'sentences') %>% ndoc()
+
+docvars(inc) %>% head()
+docvars(inc, "Order")  <- 1:ndoc(inc)
+
+# keywords in context
+kwic(inc, pattern = 'security', window = 3) %>% head()
+kwic(inc, pattern = 'security', window = 3) %>% textplot_xray()
+kwic(inc, pattern = 'security', window = 3) %>% nrow()
+k1  <- kwic(inc, pattern = phrase('God'), window = 3)
+k2  <- kwic(inc, pattern = phrase('God Bless'), window = 3)
+textplot_xray(k1,k2)
+
+# select tmers
+tok  <- tokens(inc)
+tokens_select(tok, c('immig*', 'migra*'), padding = TRUE, window =5) %>% head()
+tokens_select(tok, tokens_ngrams(n=2))
+
+# dictionaries used to implement categories for words
+
+dict  <-  dictionary(list(refugee = c('refugee', 'asylum'), worker =c('worker*','employe*')) )
+data_dictionary_LSD2015
+#other dictionaries on Benoit's repos?
+# see https://github.com/kbenoit/quanteda.dictionaries
+
+inc %>% tokens() %>% tokens_lookup(data_dictionary_LSD2015) %>% summary()
+# measures
+
+inc %>% dfm() %>% textstat_frequency()
+docvars(inc)
+inc %>% dfm() %>% dfm_group('President') %>% textstat_frequency()
+textstat_dist(dfm(inc))
+
+textstat_keyness(key_dfm )
+textstat_collocations
+textstat_lexdiv
+textstat_readability
+
+# textplot_network
+toks <- corpus_subset(data_corpus_irishbudget2010) %>%
+    tokens(remove_punct = TRUE) %>%
+    tokens_tolower() %>%
+    tokens_remove(stopwords("english"), padding = FALSE)
+myfcm <- fcm(toks, context = "window", tri = FALSE)
+feat <- names(topfeatures(myfcm, 30))
+g  <- fcm_select(myfcm, feat, verbose = FALSE) %>% 
+    textplot_network(min_freq = 0.5)
+
+library(ggplot2)
+g + ggtitle('test title')
+g
 ```
+
+## Gephi session
+
+J Drucker article on graphical display 
+
+## the sprint
+
+[Infrastructures of karma: an inquiry into attention metrification and attention dynamics in reddit] ( https://drive.google.com/open?id=1krqUNu2o1rYA-q_234860F-0Dd4k1gpjT3A_PcEG390)
+
+How and why do some conversations go down different paths? Reddit is a between space
+
+subprojects:
+    1. Instant Karma 
+    2. Karma Chameleon
+    3. Karma Police
+Matias, J. Nathan. 2016. “Going Dark: Social Factors in Collective Action Against Platform Operators in the Reddit Blackout.” In Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems. ACM. 
+
 
