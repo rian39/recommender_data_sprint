@@ -7,7 +7,7 @@ threadVis.controller("threadControl", function threadControl($scope,$http){
 	$scope.allComments = [];	
 
 	//$http.get('data/data_aqp015.json').then(
-	$http.get('data/data_ar1drq.json').then(
+	$http.get('data/rawdata.json').then(
 		function(response){
 			$scope.allComments = response.data;
 			$scope.allComments.forEach(c => c.colour = intToRGB(hashCode(c.user)));			

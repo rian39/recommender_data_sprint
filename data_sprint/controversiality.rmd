@@ -205,7 +205,6 @@ write.csv(connoncon, 'rawdata_frame.csv')
 df  <- read_csv('rawdata_frame.csv')
 connoncon  <- read_csv('rawdata_frame.csv')
 colnames(connoncon)
-dim(df)
 ```
 
 Most of the comments come near the beginning of the collection of threads.
@@ -237,8 +236,11 @@ There is no great difference between the subreddits, but great differences betwe
 
 ```{r textexplore}
 library(quanteda)
+library(readr)
 
 co  <- corpus(connoncon, text_field = 'comment', docid_field = 'id_cross')
+
+names(docvars(co))
 
 dfm  <-  dfm(co, remove_punct = TRUE, stem =  TRUE, tolower = TRUE, remove = stopwords('english'))
 kwic(co, 'ai') %>% head()
@@ -249,7 +251,6 @@ ggplot(readable, aes(Flesch.Kincaid)) + geom_histogram(bins = 100) + ggtitle('Co
 ggsave(filename = 'readability.png')
 
 connoncon %>% mutate(readability =readable$Flesch.Kincaid)
-
 
 
 readable %>% select(id_cross, Flesch.Kincaid, comment_score, becomes_controv ) %>%
