@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" ng-App="threadVis">
+  <head>
+  <title>threadVis</title>
+
+  </head>
+
+  <style type="text/css">
+
+  body{
+    position:relative;
+    margin:0;
+    padding:0;
+    font-family: Arial, sans-serif;
+  }
+
+ #slider1{
+    position:absolute;
+    right:6px;
+    width:200px;
+  }
+
+  ul, li{
+    margin:none;
+    padding:0;
+    
+      }
+
+      li{
+        display:block;
+        width:5px;
+        height:8px;
+        margin:1px;
+        background-color: #ddd;
+        position:relative;
+        bottom:0;
+        font-size:8px;
+        cursor: pointer;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px; 
+      }
+
+
+      ul{
+        display: block;
+        margin-top:60px;
+      }
+
+      .controversial{
+        background-color:#888;
+     
+      }
+
+      #comment{
+        position:fixed;
+        top:6px;
+        left:50%;
+        width:400px;
+        padding:6px 12px;
+        border: 1px solid black;
+
+      }
+
+      #controls{
+
+      }
+
+
+
+  </style>
+  
+  <body ng-controller="threadControl">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular.min.js"></script>
+    <script type="text/javascript" src="js/threadVisController.js"></script>
+
+    
+
+
+
+    <ul>
+      <li ng-repeat="c in comments" 
+      ng-style="getCommentStyle(c)"
+      ng-class="{'controversial': c.controversiality>0}"
+      ng-click="focusThisComment(c)"
+      >
+        
+      </li>
+     
+
+    </ul>
+
+    <div id="comment">
+       <div id="controls">
+       <p>Time: {{timeStep}} &bull; {{comments.length}} comments
+
+ <input id="slider1" type="range" min="1" max="30" step="1" ng-model="timeStep" ng-change="filterComments()"/></p>
+    </div>
+    <hr>
+      <h4>User: {{focusComment.user}}</h4>
+      <h4>Score: {{focusComment.comment_score}}</h4>
+      <p>{{focusComment.comment}}</p>
+
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

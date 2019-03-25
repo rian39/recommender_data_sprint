@@ -19,8 +19,8 @@ reddit = praw.Reddit(client_id=lines[0], \
 # get subreddits for the topic
 top = sys.argv[1]
 
-def save_submission(u = url):
-    submission = reddit.submission(url = u)
+def save_submission(url):
+    submission = reddit.submission(url = url)
 
     m_dict = {'post_date':[], \
                'comm_date':[], \

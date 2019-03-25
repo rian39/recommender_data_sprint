@@ -186,3 +186,48 @@ subprojects:
 Matias, J. Nathan. 2016. “Going Dark: Social Factors in Collective Action Against Platform Operators in the Reddit Blackout.” In Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems. ACM. 
 
 
+## Mon 25 Mar 2019 13:52:26 AEDT
+- talking about possible paper:
+
+
+
+Dear Rob and Adrian,
+
+Here as promised a few ideas on how we can bring forward the work that we initiated during our data sprint. My proposal, unsurprisingly, is inspired by my current research on attention hyper-synchronisation. Yet this is only pitch and open to take other research directions if you have different ideas.
+
+As you know, my main curiosity lies at present in the acceleration and amplification of online attention cycles. In this regard, there are three things that I’d like to explore in Reddit:
+
+    Is it possible to identify such acceleration and amplification phenomena in Reddit?
+    Given a subreddit, can we define the ‘normal waveform’ of the attention cycle of its threads (attention can be operationalised as number of votes or comments or a combination of both)? Can we identify hyper-synchronized threads (or phases within threads) whose waveform have significantly shorter frequency and larger amplitude?
+
+    Is there a correlation between the hyper-synchronisation of attention and the degradation of debate quality?
+    Can we find indicators of debate quality (e.g. number of words in posts, diversity of the language used) and observe how they vary in relation to normal/hyper-synchronized attention cycles?
+
+    Can we detect the triggers of hyper-synchronisation?
+    Can we identify the posts that triggers phases of hyper-synchronisation and describe their features (e.g. use of trolling language, high level of controversiality according to reddit measure…)?
+
+I think that Reddit is an ideal place to explore these ideas (because its being somewhat in-between 4chan-like and stackoverflow-like forums).
+“Menosphere” subreddits may offer a particularly interesting case study, because:
+
+    they are highly relevant both sociologically and societally;
+    they would allow to compare quarantined VS non-quarantined subreddits;
+    (last but not least) we could rely on Simon’s qualitative exploration of the same phenomena.
+
+If you are up for it, we could meet (possibly with Simons and others participants from the Sprint) tomorrow or in the first days of next week to discuss all this.
+
+Let me know
+Tommaso
+
+-- 
+
+Tommaso Venturini |  tommasoventurini.it
+Center for Internet and Society
+CNRS (National Center for Scientific Research, France)
+
+- so ideas on this:
+    - plot the waveforms for subreddits
+    - look for spikes; 
+    - look for trolls; troll detectors are being done;
+    - look for correlation between quality of debate and synchronisation;  
+- pushshift.io has graphs
+- ideas for funding for grad student to do some of the data work; Simon? Galen? DH person? 
