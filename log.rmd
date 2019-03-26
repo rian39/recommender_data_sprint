@@ -231,3 +231,12 @@ CNRS (National Center for Scientific Research, France)
     - look for correlation between quality of debate and synchronisation;  
 - pushshift.io has graphs
 - ideas for funding for grad student to do some of the data work; Simon? Galen? DH person? 
+
+## Tue 26 Mar 2019 12:18:05 AEDT
+- much of the realtime data is in pushshift.rt_reddit.comments and pushshift.rt_reddit.submissions on gbq.  This seems to realtime.
+
+```
+SELECT subreddit, count(*) FROM `pushshift.rt_reddit.comments` GROUP BY 1 ORDER BY 2 DESC limit 100
+```
+
+- also on Github, there is another API https://github.com/pushshift/api
