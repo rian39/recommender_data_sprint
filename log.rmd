@@ -240,3 +240,19 @@ SELECT subreddit, count(*) FROM `pushshift.rt_reddit.comments` GROUP BY 1 ORDER 
 ```
 
 - also on Github, there is another API https://github.com/pushshift/api
+
+## Fri 05 Apr 2019 12:41:05 AEDT
+- application for ANU-CNRS coop has gone in; see emails and RAPID_CNRS-ANU.pdf
+- writing small bid to RSSS for funds.
+
+Dear Professor Waldby
+
+## Platform news and hyper-synchronised attention dynamics 
+
+We (Ackland and Mackenzie) recently submitted a application with Dr Tommaso Venturini (RSSS Visiting Research Fellow, March 2019; CNRS Paris) to the ANU-CNRS (Paris) Collaboration Program to fund PhD studentships in the area of policy analytics and social media platforms. We have been working specifically on how platforms accelerate attention cycles.  This work arose out of collaborative work started during Dr Venturini's time at the School of Sociology, and in particular the 'Data Sprint' we ran in March. We seek funding to assist in timely completion of analysis started in the data sprint. 
+
+We would like funding to employ a research assistant to gather more data and, under our supervision, assist in the development of  analysis of 'attentional synchronisation' on social media platforms.  The work will lead to a publication output in a journal such as _Media, Culture and Society_. It will also help continue a collaboration of intellectual and institutional substance focused on platform-information dynamics and attentional economies. Carrying out this work is also immediately relevant to current debates over social media platform regulation. It will  continue to build computational social science capacity in CASS, an area of development to which we are both actively pursuing. 
+
+## Costing
+
+100 hours (May-July 2010)a @ $35/hr = $3500
