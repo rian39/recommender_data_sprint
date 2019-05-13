@@ -266,3 +266,13 @@ We would like funding to employ a research assistant to gather more data and, un
 - possible subreddits /r/politics; front page; 
 - start with  Kotaku and Futurology; 
 - meeting next week to catch up on initial data work; Galen starting;  
+
+## Mon 13 May 2019 11:37:07 AEST
+- meeting with Galen and Simon on first scripts on scraping; 
+    - problems - startup time is a week; can only do one thread at a time; so the timestamps will vary; 
+- gitlab  repos -- https://gitlab.anu.edu.au/u6312704/reddit-scrape  
+- use top, hot, controversial, new - what time period for top? 
+- do all threads only last a few days -- how would we verify that? can use pushshift to verify this? 
+- differences in volume on subbreddits - does that 
+    - votes vs comments
+
