@@ -276,3 +276,47 @@ We would like funding to employ a research assistant to gather more data and, un
 - differences in volume on subbreddits - does that 
     - votes vs comments
 
+
+## Tue 28 May 2019 09:05:18 AEST
+
+## Galens progress report for 1st scrape
+
+A quick update on the reddit scraping trial:
+
+Current Code & Trial is Very Rough, But Is Now (Sort of) Working
+I currently have my two office computers running 'scrape.py' --- one for /r/KotakuInAction and one for /r/Futurology. These have been moderately successful, although there are substantial gaps in execution (see issues listed below). I've attached two CSVs that provide a basic report on the status of each thread in the subreddits. Basically, most threads have been frequently snapshotted by the metadata scrape and barely ever covered by the full thread (with comments) scrape. The /r/KotakuInAction scrape has observed (and is attempting to repeatedly scrape) 586 threads; the /r/Futurology is covering 997. As of yesterday afternoon, data from both is uploaded as-it's-scraped to a Dropbox folder (available [here](tk)).
+
+The number of 'active' observed threads has been increasing, but it will level off eventually (as both scrapers settle on some steady-ish state of 'number of threads that are usually active in a given week in that subreddit'). I have no idea what that steady state number will be (but it matters a lot, see below).
+
+
+Current Problems:
+
+Problem 1: Errors That Occur Without 'Unlocking' Cause The Scheduled Scrape To Stop
+To prevent a race condition in which multiple instances of 'scrape.py' are run concurrently and end up repeatedly scraping the same thread (as a result of, say, a cron job that starts a run of 'scrape.py' every minute, when a single post ends up taking more than a minute to scrape), 'scrape.py' currently checks for the existence of a file called '.queue.lock' in the data folder and only scrapes if the file is not found. This is great (if rough) in theory, but sometimes a scrape will fail/hang without deleting the .queue.lock file. I only discovered this recently.
+
+Possible Solution: Forget About Locking
+My temporary solution has been to delete the .queue.lock file if it's more than 45 minutes since the most recent scrape file was added. This isn't great.
+
+
+Problem 2: Full Thread Snapshots Are Incredibly Infrequent
+Because of the number of threads being monitored, and the time it takes to scrape them, the average gap between snapshots of a given thread's comments is currently *huge*. 'scrape.py' guarantees execution of a metadata scrape of the subreddit every half hour, but otherwise chooses whatever 'active' thread that we haven't scraped in the longest time. /r/Futurology currently has 912 active-and-monitored threads, and /r/KotakuInAction has 581. The effect of this is that, even if a full thread-with-comments scrape occured every minute, we would only snapshot a given /r/Futurology thread every ~15 hours.
+
+Possible Solution: Decoupling Metadata and Full Thread Scraping
+By scheduling a metadata scrape every (say) 15 minutes on one computer, and then running a large number of thread scrapes in parallel on separate computers (each with a separate API client id/secret/useragent), we may be able to push the snapshot gaps down significantly. Unfortunately, this will require that the scraping system is containerised is some way, ideally so that it can be run on AWS instances (or whatever). I've been working on this, and have one AWS instance contributing to the futurology scrape at the moment.
+
+
+Problem 3: Data Storage
+The current scrape data takes up around 3Gb. Most of this is due (interestingly?) to a handful of large-and-repeatedly-snapshotted comment threads.
+
+Solution: Periodically Archive Old (ie, 3 week old?) Snapshots
+This is mostly a scheduling issue, and I'm looking into it.
+
+
+I'm trying not to break the current functionality of the scripts in the gitlab repo, but I'd like to do a few merges soon and clean stuff up. Please feel free to file issues via the GitLab (or just email me). Let me know what's needed.
+
+I'm working on a script to convert the directories of raw JSON files into an R dataframe (of comments) at the moment. This will be crunchy.
+
+Cheers,
+Galen
+
+
