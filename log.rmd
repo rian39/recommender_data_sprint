@@ -320,3 +320,9 @@ Cheers,
 Galen
 
 
+
+## Thu 30 May 2019 12:14:43 AEST
+- talking about the above problems; 
+- tactics -- limit the activity filter; distribute the scrape, use more computers, prioritise the threads; 
+- build graphs to get a handle on this; 
+- what do we do with the data? Discussion on this; metadata should be fine; 
