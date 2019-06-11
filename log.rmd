@@ -328,4 +328,10 @@ Galen
 
 ## Sun 02 Jun 2019 13:50:34 AEST
 - lots of work on metadata this weekend
-- add cloudstor as means of sharing files 
+- todo: add cloudstor as means of sharing files 
+- read about hclust and distance metrics -- the one I need has to apply to counts and not worry too much about differences in scale ...
+
+## Tue 11 Jun 2019 09:58:50 AEST
+- running scraper a lot to test it on humanbeingbros; using nectar server to do this; 
+- found a couple of articles on reddit in Social Media + Society; in zotero ensembles; quite a lot on engagement, etc.
+- the journal - social media + society
