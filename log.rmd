@@ -335,3 +335,12 @@ Galen
 - running scraper a lot to test it on humanbeingbros; using nectar server to do this; 
 - found a couple of articles on reddit in Social Media + Society; in zotero ensembles; quite a lot on engagement, etc.
 - the journal - social media + society
+
+## Fri 14 Jun 2019 11:33:34 AEST
+- the scrape is still running; but a bit too slow; metadata takes as long as the scrape itself;
+https://www.dropbox.com/sh/jz1pmg8tkegdar1/AADwBCoRpZK0Akeuicu7NQz-a?dl=0
+- limit the creation date to threads; 
+- going back to tv's late march email shown above;  
+- hawke's point process; econometric packages; changepoint packages;   
+- 
+- 
