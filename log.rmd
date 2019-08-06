@@ -342,5 +342,16 @@ https://www.dropbox.com/sh/jz1pmg8tkegdar1/AADwBCoRpZK0Akeuicu7NQz-a?dl=0
 - limit the creation date to threads; 
 - going back to tv's late march email shown above;  
 - hawke's point process; econometric packages; changepoint packages;   
-- 
-- 
+
+## Fri 26 Jul 2019 11:05:42 AEST
+
+- lambda aws \$1000 bill
+- need to be added to the cloudstor share for the processed jsons;  
+- rob has been building graphs; will post into a new branch;  what is he trying to do with this? Gonzaler, Baylon -- tree structures -- dynamics of posts; plots for breadth vs depth;   this is a proxy for engagement;
+- need for upvotes and downvotes for attention;  Simon, will start on this using my code; 
+- could use the comments field  to get into the forms of attention and how affect relates to this?  
+- threadids have some interesting info in them;  
+
+## Tue 06 Aug 2019 16:06:55 AEST
+-  can bid for some funding with https://services.anu.edu.au/research-support/funding-opportunities/anu-global-research-partnerships-scheme; 
+- TODO: put the document template in google doc and share; 
