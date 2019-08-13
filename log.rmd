@@ -355,3 +355,32 @@ https://www.dropbox.com/sh/jz1pmg8tkegdar1/AADwBCoRpZK0Akeuicu7NQz-a?dl=0
 ## Tue 06 Aug 2019 16:06:55 AEST
 -  can bid for some funding with https://services.anu.edu.au/research-support/funding-opportunities/anu-global-research-partnerships-scheme; 
 - TODO: put the document template in google doc and share; 
+
+## Tue 13 Aug 2019 09:30:02 AEST
+- not sure I have time for the bid above.
+- reading the Bursty article in reading/1803.02580.pdf. Some quotes:
+
+>In these cases we can talk about two kinds of inhomogeneities in observed time series. On the one hand, fluctuations are associated both with temporal inhomogeneities and with the variation of observations. On the other hand, inhomogeneities can be associated only with the timings of events, not with observation values. This is the case of several recent datasets, e.g., those related to communication or individual transactions. 6
+
+>As we will see later, bursty temporal sequences emerge with fundamentally different dynamics with strong temporal heterogeneities and temporal correlations. Any deviation in their dynamics from the corresponding Poisson model can help us to indicate patterns induced by correlations or other factors like memory effects. 7
+
+- page 14 has graphics for different communication datasets - mobile phone, email, etc. 
+
+>We have already discussed that by observing an individual, her bursty activities may evolve in trains where several events follow each other within a short time window ∆t. This is especially true for communication dynamics, where interactions like mobile calls, SMSs or emails sent or received by an ego, exhibit such patterns. However, the question remains whether such bursty communication trains are the consequences of some collective interaction patterns in the larger egocentric network, e.g., to organise an event or to process information, or on the contrary, they evolve on single links induced by discussions between only two people. 17
+
+Fascinating list of different datasets that have been analyzed; 
+Lot of discussion of seasonal, circadian, weekly, patterns and methods of dealing with that; 
+- real focus is on modelling distributions of inter-event times or waiting times. Memory effects, priority lists, etc are all added onto the basic idea of a Poisson point processes, including the idea of a process with decreasing interest.  49
+- widely used approaches of priority queues, ranking systems, memory effects, automata and power-law distributions.
+- overall usefulness? Great for references; very little awareness of social science, perhaps none. 
+
+## Discussion during meeting
+
+Rob shows network animations; some 'flower', some grow like grass.; using ndtv; with animation mode 'mdsj'. multidimensional scaling for java;   Wants to do the same thing with actor networks;
+- how to superimpose all the graphs; we could use Gonzalez-Ballon approach -- plot all maximum width and breadth; could be worth doing this for Futurology vs KotakuInAction; TODO: Rob;  What are the default reddits? This might be a difference in the subreddit structure at a network level. Its the network vs individuals? There should be differences in the subreddits relating to the membership.  
+- attention vs engagment: use votes; Simon -- will look at the literature; is attention eyeballs? What are measures of attention apart from votes? Engagement is all we can measure? 
+- 5 minutes for observation; burstiness of score; burstiness of comment; for posts;      
+- when will the data conversion be done; KotakuInAction complete in cloudstor; books subreddit is also there; 
+- next meeting: 27 Aug 2019; TODO; email Tomasso  
+- 
+
