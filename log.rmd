@@ -382,9 +382,13 @@ Rob shows network animations; some 'flower', some grow like grass.; using ndtv; 
 - 5 minutes for observation; burstiness of score; burstiness of comment; for posts;      
 - when will the data conversion be done; KotakuInAction complete in cloudstor; books subreddit is also there; 
 - next meeting: 27 Aug 2019; TODO; email Tomasso  
-- 
-
 
 ## Fri 23 Aug 2019 12:16:15 AEST
 - set up nectar instance att1; login at:
  ssh -i ~/.ssh/att ubuntu@43.240.96.146
+ - using the full lambda data from AWS as stored at /cloudstor/Shared
+
+## Wed 11 Sep 2019 09:23:00 AEST
+- getting some reddit data working today on nectar 
+- 
+ - 
