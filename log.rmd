@@ -384,3 +384,7 @@ Rob shows network animations; some 'flower', some grow like grass.; using ndtv; 
 - next meeting: 27 Aug 2019; TODO; email Tomasso  
 - 
 
+
+## Fri 23 Aug 2019 10:54:14 AEST
+- starting new nectar instance 43.240.96.122 
+
